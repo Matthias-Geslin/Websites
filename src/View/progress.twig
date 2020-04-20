@@ -6,6 +6,60 @@
 
 {% block content %}
 <h1>Content about my progress in the developpement.</h1>
+  {% for progress in progress %}
+    {% if progress.category is defined and progress.category == "Website" %}
+        <section class="card-blue">
+            <figure>
+                <img src="#" alt="#">
+            </figure>
+            <h5>{{ progress.name }}</h5>
+            <p>{{ progress.description }}</p>
+            <a class="btn-blue" href="{{ progress.link }}" title="{{ progress.name }}">{{ progress.name }} link</a>
+
+            {% if creation.link_secondary is null %}
+              {% else %}
+                  <aside>
+                    <a class="btn-blue" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
+                  </aside>
+            {% endif %}
+        </section>
+
+    {% elseif progress.category is defined and progress.category == "Codepen" %}
+        <section class="card-grey">
+            <figure>
+                <img src="#" alt="#">
+            </figure>
+            <h5>{{ progress.name }}</h5>
+            <p>{{ progress.description }}</p>
+            <a class="btn-grey" href="{{ progress.link }}" title="{{ progress.name }}">{{ progress.name }} link</a>
+
+            {% if creation.link_secondary is null %}
+              {% else %}
+                  <aside>
+                    <a class="btn-grey" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
+                  </aside>
+            {% endif %}
+        </section>
+
+    {% else %}
+        <section class="card-red">
+            <figure>
+                <img src="#" alt="#">
+            </figure>
+            <h5>{{ progress.name }}</h5>
+            <p>{{ progress.description }}</p>
+            <a class="btn-red" href="{{ progress.link }}" title="{{ progress.name }}">{{ progress.name }} link</a>
+
+            {% if creation.link_secondary is null %}
+              {% else %}
+                  <aside>
+                    <a class="btn-red" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
+                  </aside>
+            {% endif %}
+        </section>
+
+    {% endif %}
+  {% endfor %}
 {% endblock %}
 
 {% block script %}
