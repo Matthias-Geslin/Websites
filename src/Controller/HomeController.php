@@ -22,10 +22,6 @@ class HomeController extends MainController
      */
     public function launchMethod()
     {
-        $user = ModelMaker::getModel('User')->listData();
-
-        return $this->render('home.twig',[
-            'user'  => $user
-        ]);
+        return $this->render('home.twig');
     }
 }
