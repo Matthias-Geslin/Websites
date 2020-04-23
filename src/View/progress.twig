@@ -6,60 +6,86 @@
 
 {% block content %}
 <h1>Content about my progress in the developpement.</h1>
-  {% for progress in progress %}
-    {% if progress.category is defined and progress.category == "Website" %}
-        <section class="card-blue">
-            <figure>
-                <img src="#" alt="#">
-            </figure>
-            <h5>{{ progress.name }}</h5>
-            <p>{{ progress.description }}</p>
-            <a class="btn-blue" href="{{ progress.link }}" title="{{ progress.name }}">{{ progress.name }} link</a>
 
-            {% if creation.link_secondary is null %}
-              {% else %}
-                  <aside>
-                    <a class="btn-blue" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
-                  </aside>
-            {% endif %}
-        </section>
+<!-- Menu Hidden Controls -->
+<input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
+<input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
+<input id="menu-radio3" class="menu-radio3" type="radio" name="menu">
+<input id="menu-radio4" class="menu-radio4" type="radio" name="menu">
 
-    {% elseif progress.category is defined and progress.category == "Codepen" %}
-        <section class="card-grey">
-            <figure>
-                <img src="#" alt="#">
-            </figure>
-            <h5>{{ progress.name }}</h5>
-            <p>{{ progress.description }}</p>
-            <a class="btn-grey" href="{{ progress.link }}" title="{{ progress.name }}">{{ progress.name }} link</a>
+<!-- Menu -->
+<nav class="menu">
+  <label for="menu-radio1">
+    Website
+    <i class="fas fa-caret-down fa-2x" aria-hidden="true"></i>
+  </label>
+  <label for="menu-radio2">
+    Codepen
+    <i class="fas fa-caret-down fa-2x" aria-hidden="true"></i>
+  </label>
+  <label for="menu-radio3">
+    Certificate
+    <i class="fas fa-caret-down fa-2x" aria-hidden="true"></i>
+  </label>
+  <label for="menu-radio4">
+    Show all
+    <i class="fas fa-caret-down fa-2x" aria-hidden="true"></i>
+  </label>
+</nav>
 
-            {% if creation.link_secondary is null %}
-              {% else %}
-                  <aside>
-                    <a class="btn-grey" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
-                  </aside>
-            {% endif %}
-        </section>
+<section class="menu-relay">
+{% for progress in progress %}
+  {% if progress.category is defined and progress.category == "Website" %}
+      <section class="card-blue menu-target1-target4">
+          <figure>
+              <img src="img/Creation/{{ progress.file }}" alt="{{ progress.name }} picture" title="{{ progress.name }} picture">
+          </figure>
+          <h5>{{ progress.name }}</h5>
+          <p>{{ progress.description }} <br> Made in {{ progress.year }}</p>
+<aside>
+  <a class="btn-blue" href="{{ progress.link }}" target="_blank" title="{{ progress.name }}">{{ progress.name }} link</a>
 
+  {% if progress.link_secondary is null %}
     {% else %}
-        <section class="card-red">
-            <figure>
-                <img src="#" alt="#">
-            </figure>
-            <h5>{{ progress.name }}</h5>
-            <p>{{ progress.description }}</p>
-            <a class="btn-red" href="{{ progress.link }}" title="{{ progress.name }}">{{ progress.name }} link</a>
+          <a class="btn-blue" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
+  {% endif %}
+</aside>
 
-            {% if creation.link_secondary is null %}
-              {% else %}
-                  <aside>
-                    <a class="btn-red" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
-                  </aside>
-            {% endif %}
-        </section>
+      </section>
 
-    {% endif %}
-  {% endfor %}
+  {% elseif progress.category is defined and progress.category == "Codepen" %}
+      <section class="card-grey menu-target2-target4">
+          <figure>
+              <img src="img/Creation/{{ progress.file }}" alt="{{ progress.name }} picture" title="{{ progress.name }} picture">
+          </figure>
+          <h5>{{ progress.name }}</h5>
+          <p>{{ progress.description }}</p>
+          <a class="btn-grey" href="{{ progress.link }}" target="_blank" title="{{ progress.name }}">{{ progress.name }} link</a>
+
+          {% if progress.link_secondary is null %}
+            {% else %}
+                  <a class="btn-grey" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
+          {% endif %}
+      </section>
+
+  {% else %}
+      <section class="card-red menu-target3-target4">
+          <figure>
+              <img src="img/Creation/{{ progress.file }}" alt="{{ progress.name }} picture" title="{{ progress.name }} picture">
+          </figure>
+          <h5>{{ progress.name }}</h5>
+          <a class="btn-red" href="{{ progress.link }}" target="_blank" title="{{ progress.name }}">Link to it</a>
+
+          {% if progress.link_secondary is null %}
+            {% else %}
+                  <a class="btn-red" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
+          {% endif %}
+      </section>
+
+  {% endif %}
+{% endfor %}
+</section>
+
 {% endblock %}
 
 {% block script %}
