@@ -1,11 +1,67 @@
 {% extends "layout/template.twig" %}
 
-{% block description %}Matthias Geslin user connection.{% endblock %}
+{% block description %}Connection or registration space for the site.{% endblock %}
 
-{% block title %}Connection page{% endblock %}
+{% block title %}Login / Sign-in{% endblock %}
 
 {% block content %}
-<h1>Connection page to admin content.</h1>
+    <ul>
+        <input id="radio-signin" class="hide" name="sign" type="radio" checked>
+        <input id="radio-signup" class="hide" name="sign" type="radio">
+
+        <label for="radio-signin" class="sign-in"> Sign in </label>
+        <label for="radio-signup" class="sign-up"> Sign up </label>
+
+        <li id="signin">
+            <form class="form" action="{{ url('connection!launch') }}" method="post" enctype="multipart/form-data">
+                <fieldset>
+                    <legend><i class="fas fa-unlock-alt"></i> Sign in</legend>
+                    <ul>
+                        <li>
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="Email" required>
+                        </li>
+                        <li>
+                            <label for="pass">Password</label>
+                            <input id="pass" name="pass" type="password" placeholder="Password" autocomplete="off" required>
+                        </li>
+                        <li>
+                            <button type="submit">Sign in</button>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+        </li>
+
+        <li id="signup">
+            <form class="form" action="{{ url('user!create') }}" method="post" enctype="multipart/form-data">
+                <fieldset>
+                    <legend><i class="fas fa-fingerprint"></i> Sign up</legend>
+                    <ul>
+                        <li>
+                            <label for="name">Name</label>
+                            <input id="name" name="name" type="text" placeholder="Name" maxlength="50" required>
+                        </li>
+                        <li>
+                            <label for="file">Image</label>
+                            <input id="file" type="file" name="file" accept=".jpg, .jpeg, .png, .svg, .gif" required>
+                        </li>
+                        <li>
+                            <label for="emailSignUp">Email</label>
+                            <input id="emailSignUp" name="email" type="email" placeholder="Email" maxlength="100" required>
+                        </li>
+                        <li>
+                            <label for="passSignUp">Password</label>
+                            <input id="passSignUp" name="pass" type="password" placeholder="Password" autocomplete="off" maxlength="100" required>
+                        </li>
+                        <li>
+                            <button type="submit" name="signup">Submit</button>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+        </li>
+    </ul>
 {% endblock %}
 
 {% block script %}
