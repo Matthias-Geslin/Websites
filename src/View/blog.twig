@@ -8,9 +8,6 @@
 <h1>Content about my website, in a blog format.</h1>
   {% for blog in blog %}
       <section class="card-purple">
-          <figure>
-              <img src="#" alt="#">
-          </figure>
           <h5>{{ blog.title }}</h5>
           <p>
             {{ blog.content|nl2br }}
