@@ -42,15 +42,12 @@
           </figure>
           <h5>{{ progress.name }}</h5>
           <p>{{ progress.description }} <br> Made in {{ progress.year }}</p>
-<aside>
-  <a class="btn-blue" href="{{ progress.link }}" target="_blank" title="{{ progress.name }}">{{ progress.name }} link</a>
+            <a class="btn-blue" href="{{ progress.link }}" target="_blank" title="{{ progress.name }}">{{ progress.name }} link</a>
 
-  {% if progress.link_secondary is null %}
-    {% else %}
-          <a class="btn-blue" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
-  {% endif %}
-</aside>
-
+            {% if progress.link_secondary is null %}
+              {% else %}
+                    <a class="btn-blue" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
+            {% endif %}
       </section>
 
   {% elseif progress.category is defined and progress.category == "Codepen" %}
@@ -75,13 +72,11 @@
           </figure>
           <h5>{{ progress.name }}</h5>
           <a class="btn-red" href="{{ progress.link }}" target="_blank" title="{{ progress.name }}">Link to it</a>
-
           {% if progress.link_secondary is null %}
             {% else %}
                   <a class="btn-red" href="{{ progress.link_secondary }}" target="_blank" title="Secondary Link"><i class="fas fa-arrow-right"></i> Codacy</a>
           {% endif %}
       </section>
-
   {% endif %}
 {% endfor %}
 </section>
