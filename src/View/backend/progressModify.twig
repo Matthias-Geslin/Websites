@@ -1,0 +1,53 @@
+{% extends 'layout/template.twig' %}
+
+{% block description %}progresss and pens modifications. Restricted access to the administrator.{% endblock %}
+
+{% block title %} Modifications about: {{ progress.name }} {% endblock %}
+
+{% block content %}
+    <h1> Modification about: {{ progress.name }}</h1>
+    <form action="{{ url('progress!modify', {'id': progress.id }) }}" method="post" enctype="multipart/form-data">
+        <ul>
+            <li>
+                <label for="name">progress name</label>
+                <input id="name" type="text" name="name" value="{{ progress.name }}" required>
+            </li>
+            <li>
+                <label for="file">progress name</label>
+                <input id="file" type="file" name="file" accept=".jpg, .jpeg, .png, .svg, .gif">
+            </li>
+            <li>
+                <label for="link">progress link</label>
+                <input id="link" type="text" name="link" value="{{ progress.link }}" required>
+            </li>
+            <li>
+                <label for="link_2nd">Link</label>
+                <input id="link_2nd" type="text" name="link_secondary" maxlength="100" value="{{ progress.link_secondary }}">
+            </li>
+            <li>
+                <label for="date">Date</label>
+                <input id="date" type="text" name="year" maxlength="4" value="{{ progress.year }}" required>
+            </li>
+            <li>
+                <label for="description">Description</label>
+                <textarea id="description" rows="3" cols="50" name="description" required>{{ progress.description }}</textarea>
+            </li>
+            <li>
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                    <option value="{{ progress.category }}" {{ selected }}>{{ progress.category }}</option>
+                    <option value="Website">Website</option>
+                    <option value="Codepen">Codepen</option>
+                </select>
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <input type="reset" value="Reset">
+                <input type="submit" value="Update">
+            </li>
+        </ul>
+    </form>
+    <a href="{{ url('user') }}">Back</a>
+{% endblock %}
