@@ -5,15 +5,24 @@
 {% block title %}Login / Sign-in{% endblock %}
 
 {% block content %}
-    <ul>
-        <input id="radio-signin" class="hide" name="sign" type="radio" checked>
-        <input id="radio-signup" class="hide" name="sign" type="radio">
+        <!-- Menu Hidden Controls -->
+        <input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
+        <input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
 
-        <label for="radio-signin" class="sign-in"> Sign in </label>
-        <label for="radio-signup" class="sign-up"> Sign up </label>
-
-        <li id="signin">
-            <form class="form" action="{{ url('connection!launch') }}" method="post" enctype="multipart/form-data">
+        <!-- Menu -->
+        <nav class="menu">
+          <label for="menu-radio1">
+            Sign in
+            <i class="fas fa-caret-down fa-2x" aria-hidden="true"></i>
+          </label>
+          <label for="menu-radio2">
+            Sign up
+            <i class="fas fa-caret-down fa-2x" aria-hidden="true"></i>
+          </label>
+        </nav>
+        
+        <section class="menu-relay">
+            <form class="form menu-target1" action="{{ url('connection!launch') }}" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend><i class="fas fa-unlock-alt"></i> Sign in</legend>
                     <ul>
@@ -31,10 +40,8 @@
                     </ul>
                 </fieldset>
             </form>
-        </li>
 
-        <li id="signup">
-            <form class="form" action="{{ url('user!create') }}" method="post" enctype="multipart/form-data">
+            <form class="form menu-target2" action="{{ url('user!create') }}" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend><i class="fas fa-fingerprint"></i> Sign up</legend>
                     <ul>
@@ -60,8 +67,7 @@
                     </ul>
                 </fieldset>
             </form>
-        </li>
-    </ul>
+    </section>
 {% endblock %}
 
 {% block script %}
