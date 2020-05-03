@@ -5,7 +5,119 @@
 {% block title %}User page{% endblock %}
 
 {% block content %}
-<h1>User only. Restricted area soon.<h1>
+<h1>User only. Restricted area for administrator.<h1>
+
+
+  <input id="menu-radio1" class="menu-radio1" type="radio" name="menu" checked>
+  <input id="menu-radio2" class="menu-radio2" type="radio" name="menu">
+  <input id="menu-radio3" class="menu-radio3" type="radio" name="menu">
+  <input id="menu-radio4" class="menu-radio4" type="radio" name="menu">
+
+  <!-- Master Menu -->
+  <nav class="menu">
+    <label for="menu-radio1">
+      Progress
+      <i class="fas fa-caret-down fa-2x" aria-hidden="true"></i>
+    </label>
+    <label for="menu-radio2">
+      Blog
+      <i class="fas fa-caret-down fa-2x" aria-hidden="true"></i>
+    </label>
+    <label for="menu-radio3">
+      Game
+      <i class="fas fa-caret-down fa-2x" aria-hidden="true"></i>
+    </label>
+    <label for="menu-radio4">
+      Users
+      <i class="fas fa-caret-down fa-2x" aria-hidden="true"></i>
+    </label>
+  </nav>
+
+  <section class="menu-relay flex placo-evenly">
+
+    <!-- progress part -->
+    <section class="menu-target1">
+        {% for progress in progress %}
+          {% if progress.category is defined and progress.category == "Website" %}
+              <section class="card-blue">
+                  <h5>{{ progress.name }}</h5>
+                  <p>{{ progress.description }} <br> Made in {{ progress.year }}</p>
+
+                  <a href="{{ url('progress!modify', {'id': progress.id}) }}" title="Modify the website"><i class="fas fa-pen"></i> Modify</a>
+                  <br>
+                  <a href="{{ url('progress!delete', {'id': progress.id}) }}" title="Delete the website"><i class="fas fa-trash-alt"></i> Delete</a>
+              </section>
+
+          {% elseif progress.category is defined and progress.category == "Codepen" %}
+              <section class="card-grey">
+                  <h5>{{ progress.name }}</h5>
+                  <p>{{ progress.description }}</p>
+
+                  <a href="{{ url('progress!modify', {'id': progress.id}) }}" title="Modify the pen"><i class="fas fa-pen"></i> Modify</a>
+                  <br>
+                  <a href="{{ url('progress!delete', {'id': progress.id}) }}" title="Delete the pen"><i class="fas fa-trash-alt"></i> Delete</a>
+              </section>
+
+          {% else %}
+              <section class="card-red">
+                  <h5>{{ progress.name }}</h5>
+
+                  <a href="{{ url('progress!modify', {'id': progress.id}) }}" title="Modify the certificate"><i class="fas fa-pen"></i> Modify</a>
+                  <br>
+                  <a href="{{ url('progress!delete', {'id': progress.id}) }}" title="Delete the certificate"><i class="fas fa-trash-alt"></i> Delete</a>
+              </section>
+          {% endif %}
+        {% endfor %}
+    </section>
+
+
+    <!-- blog part -->
+    <section class="menu-target2">
+      {% for blog in blog %}
+          <section class="card-purple">
+              <h5>{{ blog.title }}</h5>
+              <p>
+                {{ blog.content|nl2br }}
+              </p>
+              <p>
+                {{ blog.created_date }}
+              </p>
+              <a href="{{ url('blog!modify', {'id': blog.id}) }}" title="Modify the post"><i class="fas fa-pen"></i> Modify</a>
+              <br>
+              <a href="{{ url('blog!delete', {'id': blog.id}) }}" title="Delete the post"><i class="fas fa-trash-alt"></i> Delete</a>
+          </section>
+      {% endfor %}
+    </section>
+
+    <!-- game -->
+    <section class="menu-target3">
+      {% for game in game %}
+        <section class="card">
+        </section>
+      {% endfor %}
+    </section>
+
+    <!-- users -->
+    <section class="menu-target4">
+      {% for user in user %}
+          <section class="card-green">
+              <h5>{{ user.name }}</h5>
+                <figure>
+                  <img src="img/User/{{ user.file }}" alt="{{ user.name }}">
+                </figure>
+              <p>
+                {{ user.email }}
+              </p>
+              <p>
+                {{ user.status }}
+              </p>
+              <a href="{{ url('user!modify', {'id': user.id}) }}" title="Modify the user"><i class="fas fa-pen"></i> Modify</a>
+              <br>
+              <a href="{{ url('user!delete', {'id': user.id}) }}" title="Delete the user"><i class="fas fa-trash-alt"></i> Delete</a>
+          </section>
+      {% endfor %}
+    </section>
+  </section>
 {% endblock %}
 
 {% block script %}
