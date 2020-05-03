@@ -38,7 +38,7 @@
     {{ include('layout/navbar.twig') }}
 </header>
 
-<section class="container-90xs">
+<section class="container">
     {% block content %}{% endblock %}
 </section>
 
@@ -46,6 +46,7 @@
 
 {% block script %}{% endblock %}
 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="js/script.js"></script>
 
 </body>
