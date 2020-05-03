@@ -5,19 +5,22 @@
 {% block title %}Blog page{% endblock %}
 
 {% block content %}
-<h1>Content about my website, in a blog format.</h1>
-  {% for blog in blog %}
-      <section class="card-purple">
-          <h5>{{ blog.title }}</h5>
-          <p>
-            {{ blog.content|nl2br }}
-          </p>
-          <p>
-            {{ blog.created_date }}
-          </p>
-          <a class="btn-purple" href="#">To the full post</a>
-      </section>
-  {% endfor %}
+<section class="flex placo-evenly">
+  <h1>Content about my website, in a blog format.</h1>
+    {% for blog in blog %}
+        <section class="card-purple">
+            <h5>{{ blog.title }}</h5>
+            <p>
+              {{ blog.content|nl2br }}
+            </p>
+            <p>
+              {{ blog.created_date }}
+            </p>
+            <a class="btn-purple" href="#">To the full post</a>
+        </section>
+    {% endfor %}
+</section>
+
 {% endblock %}
 
 {% block script %}
