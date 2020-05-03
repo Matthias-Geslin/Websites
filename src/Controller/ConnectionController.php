@@ -20,8 +20,36 @@ class ConnectionController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function launchMethod()
+     public function launchMethod()
+     {
+         if (!empty($this->post['email']) && !empty($this->post['pass'])) {
+             $user = ModelMaker::getModel('User')->readData($this->post['email'], 'email');
+
+             if (password_verify($this->post['pass'], $user['pass'])) {
+                 $this->sessionCreate($user);
+                 $this->redirect('home');
+             }
+         }
+
+         if ($this->getUserVar('status') === 'Admin' || $this->getUserVar('status') === 'Member') {
+             $this->redirect('user');
+         }
+         elseif ($this->getUserVar('status') === 'Visitor') {
+             $this->redirect('home');
+         }
+
+         return $this->render('connection.twig');
+     }
+
+     /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function logoutMethod()
     {
-        return $this->render('connection.twig');
+        $this->sessionDestroy();
+        $this->redirect('home');
     }
 }
