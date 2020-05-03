@@ -6,22 +6,22 @@
 
 {% block content %}
     <h1> Modification about: {{ progress.name }}</h1>
-    <form action="{{ url('progress!modify', {'id': progress.id }) }}" method="post" enctype="multipart/form-data">
+    <form class="form" action="{{ url('progress!modify', {'id': progress.id }) }}" method="post" enctype="multipart/form-data">
         <ul>
             <li>
-                <label for="name">progress name</label>
+                <label for="name">Progress name</label>
                 <input id="name" type="text" name="name" value="{{ progress.name }}" required>
             </li>
             <li>
-                <label for="file">progress name</label>
+                <label for="file">File</label>
                 <input id="file" type="file" name="file" accept=".jpg, .jpeg, .png, .svg, .gif">
             </li>
             <li>
-                <label for="link">progress link</label>
+                <label for="link">First Link</label>
                 <input id="link" type="text" name="link" value="{{ progress.link }}" required>
             </li>
             <li>
-                <label for="link_2nd">Link</label>
+                <label for="link_2nd">Link Secondary</label>
                 <input id="link_2nd" type="text" name="link_secondary" maxlength="100" value="{{ progress.link_secondary }}">
             </li>
             <li>
@@ -38,6 +38,7 @@
                     <option value="{{ progress.category }}" {{ selected }}>{{ progress.category }}</option>
                     <option value="Website">Website</option>
                     <option value="Codepen">Codepen</option>
+                    <option value="Certificate">Certificate</option>
                 </select>
             </li>
         </ul>
